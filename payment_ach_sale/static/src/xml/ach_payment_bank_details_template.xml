@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2022 Sodexis License OPL-1 (See LICENSE file for full copyright
+    and licensing details). -->
+<templates xml:space="preserve">
+    <div t-name="payment_ach_sale.ACHPaymentBankDetailsForm" class="form-vertical">
+        <div id="ach_payment_info">
+            <span>
+                <label for="ach_bank_name" class="ach_payment_bank_field">Bank Name</label>
+            </span>
+            <span style="padding-left:70px">
+                <input type="text" id="ach_bank_name" name="ach_bank_name" style="width:250px" t-att-required="true" />
+            </span>
+            <br />
+            <span>
+                <label for="ach_routing_number" class="ach_payment_bank_field">Routing Number</label>
+            </span>
+            <span style="padding-left:43px">
+                <input type="number" id="ach_routing_number" name="ach_routing_number" style="width:250px" oninput="javascript: if (this.value.length &gt; this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" />
+            </span>
+            <br />
+            <span>
+                <label for="ach_account_holder_name" class="ach_payment_bank_field">Name on Account</label>
+            </span>
+            <span style="padding-left:33px">
+                <input type="text" id="ach_account_holder_name" name="ach_account_holder_name" style="width:250px" />
+            </span>
+            <br />
+            <span>
+                <label for="ach_account_number" class="ach_payment_bank_field">Account Number</label>
+            </span>
+            <span style="padding-left:38px">
+                <input type="number" id="ach_account_number" name="ach_account_number" style="width:250px" />
+            </span>
+            <br />
+            <span>
+                <label for="ach_bank_account_type" class="ach_payment_bank_field">Bank Account Type</label>
+            </span>
+            <span style="padding-left:25px">
+                <select name="ach_bank_account_type" id="ach_bank_account_type" style="height:25px;width:250px">
+                    <option />
+                    <option value="personal_checking">Personal Checking</option>
+                    <option value="personal_saving">Personal Savings</option>
+                    <option value="business_checking">Business Checking</option>
+                    <option value="business_saving">Business Savings</option>
+                </select>
+            </span>
+        </div>
+        <div id="ach_mandate" class="ach_mandate">
+            <p id="ach_mandate_text" for="ach_mandate_checkbox" />
+            <input id="ach_mandate_checkbox" type="checkbox" style="height: 1em;width: 1em;vertical-align: middle;" />
+        </div>
+    </div>
+</templates>

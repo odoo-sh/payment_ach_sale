@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2022 Sodexis License OPL-1 (See LICENSE file for full copyright
+    and licensing details). -->
+<odoo>
+    <data noupdate="1">
+        <record id="payment_acquirer_ach" model="payment.acquirer">
+            <field name="name">ACH Payment</field>
+            <field name="provider">ach</field>
+            <field name="state">test</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="view_template_id" ref="payment_ach_sale.ach_payment_form"/>
+            <field name="pending_msg">We will process the payment and get back to you as soon as possible</field>
+            <field name="mandate_msg">I authorize Home &amp; Leisure, Inc. dba Structureworks to debit the bank account specified for payment on the referenced invoice. I guarantee and warrant that I am an authorized user of this bank account and that I am authorized to enter into this agreement. This is permission for a single transaction only
+            </field>
+        </record>
+    </data>
+</odoo>

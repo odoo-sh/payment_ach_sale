@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2022 Sodexis License OPL-1 (See LICENSE file for full copyright
+    and licensing details). -->
+<odoo>
+    <template id="assets_frontend" inherit_id="web.assets_frontend">
+        <xpath expr="script[last()]" position="after">
+            <script type="text/javascript" src="/payment_ach_sale/static/src/js/payment_form.js"></script>
+            <script type="text/javascript" src="/payment_ach_sale/static/src/js/payment_processing.js"></script>
+            <link rel="stylesheet" type="text/css" href="/payment_ach_sale/static/src/css/ach_payment_bank_details.css"/>
+        </xpath>
+    </template>
+</odoo>

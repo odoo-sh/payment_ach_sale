@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2022 Sodexis License OPL-1 (See LICENSE file for full copyright
+    and licensing details). -->
+<odoo>
+    <template id="website_sale_order" name="Order" inherit_id="website_sale.payment">
+        <xpath expr="//div[@id='payment_method']" position="inside">
+            <input type="hidden" id="ach_sale_order_id" name="ach_sale_order_id" t-att-value="website_sale_order.id"/>
+        </xpath>
+    </template>
+</odoo>

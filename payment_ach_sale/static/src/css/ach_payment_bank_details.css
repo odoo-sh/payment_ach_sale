@@ -1,0 +1,33 @@
+.ach_payment_bank_field:after {
+    content:" *";
+    color: black;
+  }
+
+.ach_payment_bank_field_required:after {
+    content:" *";
+    color: red;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.ach_mandate {
+  padding-top:5%;
+  display:block;
+  padding: 1em;
+  margin: 2em;
+  border: 3px solid #ddd;
+  background-color: #eee;
+  max-width: 800px;
+  }
+  
+  .error {
+  position: relative;
+  animation: shake .1s linear;
+  animation-iteration-count: 3;
+  border: 1px solid red;
+  outline: none;
+}
