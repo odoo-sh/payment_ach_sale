@@ -34,7 +34,11 @@ class ResPartnerBank(models.Model):
             if sale_order and record.mandate_ids:
                 #Validate the Mandate
                 record.mandate_ids[0].validate()
-                sale_order.write({'mandate_id':record.mandate_ids[0].id})
+                values = {'mandate_id':record.mandate_ids[0].id}
+                partner_payment_mode_id = sale_order.partner_id.customer_payment_mode_id
+                if not sale_order.payment_mode_id and partner_payment_mode_id:
+                    values.update({'payment_mode_id': partner_payment_mode_id and partner_payment_mode_id.id})
+                sale_order.write(values)
         return record
 
     def write(self, vals):
@@ -58,7 +62,11 @@ class ResPartnerBank(models.Model):
                                       })
                     #Validate the Mandate
                     mandate_id.validate()
-                    sale_order.write({'mandate_id':mandate_id.id})
+                    values = {'mandate_id':mandate_id.id}
+                    partner_payment_mode_id = sale_order.partner_id.customer_payment_mode_id
+                    if not sale_order.payment_mode_id and partner_payment_mode_id:
+                        values.update({'payment_mode_id': partner_payment_mode_id and partner_payment_mode_id.id})
+                    sale_order.write(values)
         return res
 
     @api.model
