@@ -31,7 +31,9 @@ class ResPartnerBank(models.Model):
         record = super(ResPartnerBank,self).create(vals)
         if self._context.get('sale_order_id',False):
             sale_order = self.env["sale.order"].browse(self._context.get('sale_order_id'))
-            if sale_order:
+            if sale_order and record.mandate_ids:
+                #Validate the Mandate
+                record.mandate_ids[0].validate()
                 sale_order.write({'mandate_id':record.mandate_ids[0].id})
         return record
 
@@ -51,9 +53,11 @@ class ResPartnerBank(models.Model):
                     mandate_id = self.env["account.banking.mandate"].create({'format':'basic',
                                             'type':'oneoff', 
                                             'signature_date': date.today(),
-                                            'delay_days': 0,
+                                            'delay_days': 1,
                                             'partner_bank_id': partner_bank.id
                                       })
+                    #Validate the Mandate
+                    mandate_id.validate()
                     sale_order.write({'mandate_id':mandate_id.id})
         return res
 

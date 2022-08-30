@@ -188,7 +188,7 @@ odoo.define('payment_ach_sale.ach_payment_form', function(require) {
                                                         'format': 'basic',
                                                         'type': 'oneoff',
                                                         'signature_date': new Date().toJSON().slice(0, 10),
-                                                        'delay_days': 0
+                                                        'delay_days': 1
                                                     }]
                                                 ]
                                             }],
