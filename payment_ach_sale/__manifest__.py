@@ -21,6 +21,7 @@
         "views/assets.xml",
         "views/payment_acquirer_views.xml",
         "views/sale_order_views.xml",
-        "views/website_sale_templates.xml"
+        "views/website_sale_templates.xml",
+        "views/account_payment_mode_views.xml"
     ],
 }

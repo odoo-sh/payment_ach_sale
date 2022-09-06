@@ -4,3 +4,5 @@ from . import sale_order
 from . import payment_acquirer
 from . import payment_transaction
 from . import res_partner_bank
+from . import account_payment_mode
+from . import account_banking_mandate
