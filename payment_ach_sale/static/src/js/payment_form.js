@@ -105,7 +105,7 @@ odoo.define('payment_ach_sale.ach_payment_form', function(require) {
             else if (current_url.includes("sale_id=")){
                order_id = parseInt(current_url.split("sale_id=")[1].split("&")[0]);
             }
-            else if (document.getElementById('ach_sale_order_id') !== 'null')
+            else if (document.getElementById('ach_sale_order_id') !== null)
             {
                order_id = parseInt(document.getElementById('ach_sale_order_id').value);
             }

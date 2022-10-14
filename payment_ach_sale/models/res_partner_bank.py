@@ -8,10 +8,23 @@ from datetime import date
 class ResPartnerBank(models.Model):
     _inherit = 'res.partner.bank'
 
-    ach_bank_account_type = fields.Selection([('personal_checking','Personal Checking'),
-                                              ('personal_saving','Personal Savings'),
-                                              ('business_checking','Business Checking'),
-                                              ('business_saving','Business Savings')],string='ACH Bank Account Type')
+    ach_bank_account_type = fields.Selection(selection=lambda x: x.env['res.partner.bank'].get_supported_account_types(),string='ACH Bank Account Type')
+    acc_type = fields.Selection(selection=lambda x: x.env['res.partner.bank'].get_supported_account_types(),
+                                compute='_compute_acc_type',
+                                inverse='_inverse_acc_type',
+                                string='Type',
+                                help='Bank account type: Normal or IBAN. Inferred from the bank account number.')
+
+    def _inverse_acc_type(self):
+        self.ach_bank_account_type = self.acc_type
+
+    @api.depends('acc_number')
+    def _compute_acc_type(self):
+        for bank in self:
+            if bank.ach_bank_account_type:
+                bank.acc_type = bank.ach_bank_account_type
+            else:
+                bank.acc_type = self.retrieve_acc_type(bank.acc_number)
 
     @api.model
     def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
@@ -68,12 +81,6 @@ class ResPartnerBank(models.Model):
                         values.update({'payment_mode_id': partner_payment_mode_id and partner_payment_mode_id.id})
                     sale_order.write(values)
         return res
-
-    @api.model
-    def retrieve_acc_type(self, acc_number):
-        for partner_bank in self.filtered(lambda x:x.ach_bank_account_type):
-            return partner_bank.ach_bank_account_type
-        return super(ResPartnerBank, self).retrieve_acc_type(acc_number)
 
     @api.model
     def _get_supported_account_types(self):
