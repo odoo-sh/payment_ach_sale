@@ -24,7 +24,7 @@ class ResPartnerBank(models.Model):
             if bank.ach_bank_account_type:
                 bank.acc_type = bank.ach_bank_account_type
             else:
-                bank.acc_type = self.retrieve_acc_type(bank.acc_number)
+                bank.acc_type = 'business_checking'
 
     @api.model
     def search_read(self, domain=None, fields=None, offset=0, limit=None, order=None):
@@ -84,7 +84,7 @@ class ResPartnerBank(models.Model):
 
     @api.model
     def _get_supported_account_types(self):
-        rslt = super(ResPartnerBank, self)._get_supported_account_types()
+        rslt = []
         rslt.append(('personal_checking', _('Personal Checking')))
         rslt.append(('personal_saving', _('Personal Savings')))
         rslt.append(('business_checking', _('Business Checking')))
